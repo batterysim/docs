@@ -32,10 +32,6 @@ caption {
   text-align: center;
 }
 
-code {
-  font-size: 0.7em;
-}
-
 dl, li, p {
   font-family: "Times New Roman", Times, serif;
   font-size: 1.4em;
@@ -57,3 +53,39 @@ pre {
   font-size: 1.0em;
 }
 
+ul {
+  margin-left: 0;
+  padding-left: 24px;
+}
+
+/* Portrait phones and smaller */
+
+@media (max-width: 480px) {
+
+  .sourceCode {
+    font-size: 8pt;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  dl, li, p {
+    font-size: 11pt;
+  }
+
+  img {
+    display: block;
+    height: auto;
+    max-width: 100%;
+  }
+
+}
