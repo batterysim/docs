@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CAEBAT OAS/VIBE</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="navbar-fixed-side.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Pandoc commands -->
+
+  
+      <style type="text/css">div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */</style>
+  
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  </head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2">
+        <nav class="navbar navbar-inverse navbar-fixed-side">
+          
+          <!-- Side Navigation Bar -->
+
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">CAEBAT OAS/VIBE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavBar">
+              <ul class="nav navbar-nav">
+                <li><a href="#new-features">New Features</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#oas">OAS</a></li>
+                <li><a href="#battery-markup-language-batml">Battery Markup Language (BatML)</a></li>
+                <li><a href="#battery-state">Battery State</a></li>
+                <li><a href="#virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</a></li>
+                <li><a href="#integrated-computational-environment-ice">Integrated Computational Environment (ICE)</a></li>
+                <li><a href="#example-applications">Example Applications</a></li>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</a></li>
+                <li><a href="#appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</a></li>
+                <li><a href="#appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</a></li>
+                <li><a href="#appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</a></li>
+                <li><a href="#references">References</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#acknowledgment">Acknowledgment</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </nav>
+      </div>
+      <div class="col-sm-9 col-lg-10">
+
+<!-- Main Content -->
+
+<h1 class="text-center">CAEBAT OAS/VIBE</h1>
+<img class="center-block" src="assets/00-logo.png" alt="logo" width="400px">
+<p class="text-center">S. Allu, J.J. Billings, W. Elwasif, S. Kalnaus, A. Kumar, D. Lebrun-Grandie, A. McCaskey, S. Pannala, S. Simunovic, R.W. Smith, B. Turcksin, J. Turner</p>
+<p class="text-center">12/1/2016, Production Release v1.2</p>
+<p class="text-center">Document detailing the updated release to users of CAEBAT OAS and VIBE. Contains software description, installation, run instructions, and examples.</p>
+<br>
+
+<h1 id="new-features">New Features</h1>
+<p>The new release extends the previous version by implementing:</p>
+<ul>
+<li>Continuous execution mode of OAS which provides savings in computational time of up to 50%</li>
+<li>Capability to simulate dynamic discharge (variable potentiostatic/galvanostatic conditions)</li>
+<li>Improved Integrated Computational Environment (ICE)</li>
+<li>Deployment via Docker and addition to Virtual Machine</li>
+</ul>
+<h1 id="introduction">Introduction</h1>
+<p>As part of the CAEBAT (Computer Aided Engineering for Batteries) activities, ORNL developed a flexible, robust, and computationally scalable open-architecture framework that integrates multi-physics and multi- scale battery models. The physics phenomena of interest include charge and thermal transport, electrochemical reactions, and mechanical stresses. They operate and interact across the porous 3D structure of the electrodes (cathodes and anodes), the solid or liquid electrolyte system and the other battery components. The underlying lower-length processes are accounted for through closure equations and sub- models that are based on resolved quantities. The schematic of this framework is given in Fig. 1.</p>
+<div class="figure">
+<img src="assets/02-oas-schematic.png" alt="Figure 1: Schematic of the OAS modeling framework and interactions with other tasks within the CAEBAT program and external activities." id="fig:oas-schematic" width="384" />
+<p class="caption">Figure 1: Schematic of the OAS modeling framework and interactions with other tasks within the CAEBAT program and external activities.</p>
+</div>
+<p>This framework enables seamless integration of the following physical phenomena that are necessary for development of realistic and predictive battery performance and safety models:</p>
+<p>Mass Transport</p>
+<ul>
+<li>Lithium/electron transport through cathode, anode and electrolyte materials</li>
+<li>Spatiotemporal variations in material properties</li>
+</ul>
+<p>Thermal Transport</p>
+<ul>
+<li>Thermal transport through various battery materials as a function of space and time</li>
+</ul>
+<p>Electrochemistry</p>
+<ul>
+<li>Primary and secondary reactions</li>
+<li>Interfacial reactions</li>
+</ul>
+<p>Mechanical behavior</p>
+<ul>
+<li>Linear and nonlinear mechanics</li>
+<li>Stress/strain relationships</li>
+<li>Fracture at primary and secondary particle levels</li>
+</ul>
+<p>The objective of the project is to develop a mathematical and computational infrastructure, and modeling framework that will enable seamless multi-scale and multi-physics simulations of battery performance and safety. The modeling framework will transfer the information between models in a physically consistent and mathematically rigorous fashion for both spatial and temporal variations. The end result will be a verified, computationally scalable, portable, and flexible (extensible and easily-modified) framework that can integrate models from the other CAEBAT tasks and industrial partners. The framework will be used to validate models and modeling approaches against experiments and to support rapid prototyping of advanced battery concepts. Fig. 2 shows different parts of CAEBAT VIBE simulation environment that work together to provide user with flexibility in the problem setup, solution formulation and simulation launch. Each of the parts is discussed in subsequent sections with corresponding examples.</p>
+<div class="figure">
+<img src="assets/02-vibe-parts.png" alt="Figure 2: Parts of the CAEBAT VIBE environment" id="fig:vibe-parts" width="384" />
+<p class="caption">Figure 2: Parts of the CAEBAT VIBE environment</p>
+</div>
+<h1 id="oas">OAS</h1>
+<p>The goal is to create a modular and extensible software infrastructure that can support multiple modeling formulations and computer codes for simulation of battery performance and safety. The main guiding principles for the design of the framework are:</p>
+<p>Flexibility</p>
+<ul>
+<li>Programing language-agnostic</li>
+<li>Supports multiple modeling approaches and codes</li>
+<li>Combines appropriate component models for problem at hand</li>
+<li>Supports integrated sensitivity analysis and uncertainty quantification</li>
+</ul>
+<p>Extensibility</p>
+<ul>
+<li>Ability to add proprietary component models</li>
+</ul>
+<p>Computational scalability from desktop to HPC platforms</p>
+<ul>
+<li>Portable and adaptable to various computer hardware architectures</li>
+</ul>
+<p>The OAS infrastructure employs a modular design with strict interfaces, object-oriented data structures, and a lightweight backplane implemented in Python scripting language. This design is illustrated in Fig. 3. The framework services control the various software components through component adapters. The components update the battery state through state adapters. The battery state is the minimal digital description of the battery in space and time such that each simulation component can apply their respective physics models and advance in time from each state point to the next. The OAS framework, along with physics and support components and the adapters constitute the Virtual Integrated Battery Environment (VIBE).</p>
+<div class="figure">
+<img src="assets/03-oas-framework.png" alt="Figure 3: Schematic of the OAS modeling framework, which connects physics components through component adapters, with linkage to the battery state through state adaptors. A specific collection of components, adaptors, and the OAS framework defines one realization of VIBE (Virtual Integrated Battery Environment)" id="fig:oas-framework" width="384" />
+<p class="caption">Figure 3: Schematic of the OAS modeling framework, which connects physics components through component adapters, with linkage to the battery state through state adaptors. A specific collection of components, adaptors, and the OAS framework defines one realization of VIBE (Virtual Integrated Battery Environment)</p>
+</div>
+<h1 id="battery-markup-language-batml">Battery Markup Language (BatML)</h1>
+<p>The objective of the BatML specification is to provide standardized format for definition of all the necessary information for battery performance and safety modeling. The overall design for the BatML is given in Fig. 4 below. The BatML Schema establishes the main structure for the BatML data files and enables data validation and consistency checking. BatML files can contain databases and models with default values or with company proprietary information. For e.g., Dow-Kokam or Johnson Controls can provide a database of their cell- sandwich properties that an OEM can directly use in their models. Several examples based on open literature for standard battery materials and components have been developed and made available to the project partners. The graphic workflow environment described later in this documentation (ICE) uses these Schemas and Databases along with any additional user input to create a BatML input file. This XML file can either be used directly by simulation packages or through translators that transform this input into native formats read by the different software components.</p>
+<div class="figure">
+<img src="assets/04-batml-structure.png" alt="Figure 4: Overall structure of the battery markup language." id="fig:batml-structure" width="384" />
+<p class="caption">Figure 4: Overall structure of the battery markup language.</p>
+</div>
+<p>The top-level structure of the Battery ML Schema (available at the CAEBAT project website http://batterysim.org) is shown in Fig. 5. Here we define a battery component type that contains the base components such as anode, cathode, electrolyte, separator, current collectors. These base components are used to build higher-level components such as cell-sandwich, cell, module, pack, parts (e.g., busbar, cooling fins). Each of these components can contain additional sub-components, as their definition is dependent on the form of model used. For e.g., the cell-sandwich definition will depend on the model for electrochemical component. The Cell can be further specified as Cylindrical cell, Prismatic cell, etc. To enable this flexibility, we picked the relational data model (hierarchical data model will also be implemented in the language). The main considerations for selecting the relational versus hierarchical data model were:</p>
+<ul>
+<li>Batteries have very deep hierarchy and the hierarchical data model will lead to considerable duplication of the data</li>
+<li>Relational data model provides the flexibility to quickly modify the hierarchies of the models and add new components</li>
+<li>Relational approach requires that all the references to the data exist and that the model is self- contained. This does not impose a strong limitation because the input files will be primarily manipulated using GUI and not by user editing of the XML files.</li>
+<li>Cross referencing in relational data model drastically reduce data duplication and the corresponding risk for errors</li>
+</ul>
+<div class="figure">
+<img src="assets/04-batml-schema.png" alt="Figure 5: Battery markup language schema." id="fig:batml-schema" width="288" />
+<p class="caption">Figure 5: Battery markup language schema.</p>
+</div>
+<p>Once the DualFoil model has been selected, it can be further subdivided into different components of the cell sandwich. The Battery ML schema imports the cell-sandwich schema (whose structure is shown in Fig. 6 and can be downloaded from the project’s web site) that further specifies the details of its components. Similar hierarchical expansion can be used to define cell, module, pack, etc. Current implementation contains the above battery hierarchy. Translators between BatML and other input formats of CAEBAT partners have been developed with the final goal of BatML becoming a standard. Fig. 7 compares the EC Power input and conversion to BatML. Similar translators have been developed for Text Battery Model (.tbm) files (BDS/CD Adapco), .svm files (NREL MatLab model), as well as ANSYS input. We keep the project’s website up to date with the latest version of the schema, corresponding documentation and examples, schema validation tools, etc.</p>
+<div class="figure">
+<img src="assets/04-batml-components.png" alt="Figure 6: Cell sandwich and component markup language schema types." id="fig:batml-components" width="288" />
+<p class="caption">Figure 6: Cell sandwich and component markup language schema types.</p>
+</div>
+<div class="figure">
+<img src="assets/04-batml-ecpower.png" alt="Figure 7: Translation between BatML and EC power input." id="fig:batml-ecpower" width="384" />
+<p class="caption">Figure 7: Translation between BatML and EC power input.</p>
+</div>
+<h1 id="battery-state">Battery State</h1>
+<p>The OAS framework integrates battery models using component and state adapters. The component adapters interact with the components by preparing the necessary inputs to run the components and by scheduling the component runs. The state adapters interact with the battery state file(s) by updating all the necessary information about the battery state and the methods for coupling the components. Fig. 8 shows a battery state file that transfers the information between the electrochemistry, thermal and electrical physics components. The device hierarchy is modeled by coarse-graining of the underlying sub-components. The top hierarchical level of the model is divided into zones. These zones then transfer information between the components in case of loosely coupled multi-physics simulations. Further description and examples of the battery state are given in the sections that follow.</p>
+<div class="figure">
+<img src="assets/05-battery-state.png" alt="Figure 8: The battery state file is the core device for passing data between components." id="fig:battery-state" width="480" />
+<p class="caption">Figure 8: The battery state file is the core device for passing data between components.</p>
+</div>
+<h1 id="virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</h1>
+<p>We have added several components for modeling electrochemistry and mass, electron, and heat transport in order to VIBE. The components that have been integrated so far are:</p>
+<p>Electrochemistry</p>
+<ul>
+<li>Pseudo 2D Dual-Foil (Doyle, Fuller et al. 1993; Fuller, Doyle et al. 1994; Fuller, Doyle et al. 1994)</li>
+<li>3D electrochemistry model known as AMPERES</li>
+<li>NTG (Seong Kim, Yi et al. 2011)</li>
+<li>NREL MSMD (Kim, Smith et al. 2011)</li>
+<li>AMPERES Single Particle</li>
+<li>AMPERES Pseudo-2D</li>
+</ul>
+<p>Thermal and Electrical</p>
+<ul>
+<li>AMPERES</li>
+</ul>
+<p>Cost Model</p>
+<ul>
+<li>ANL cost model</li>
+</ul>
+<p>Mechanics</p>
+<ul>
+<li>EPIC, LS-Dyna, LIGGGHTS/LAMMPS</li>
+</ul>
+<h1 id="integrated-computational-environment-ice">Integrated Computational Environment (ICE)</h1>
+<p>ICE is a graphical workflow editor for input, simulation setup, job launch and analysis. The driving force behind ICE is the development of software that provides an integrated set of capabilities for working with physics simulators for creating input files, managing and analyzing data, launching jobs and code coupling through data mapping. The framework was originally developed for the Nuclear Energy Advanced Modeling and Simulation program (NEAMS), - a DOE NE project. The capabilities of ICE for CAEBAT were designed specifically to aid in simulation setup and job launch. Within the graphical interface the selection of components (physics models), platforms, time-stepping schemes, meshes, etc becomes much easier task. Further updated information can be found on the <a href="https://eclipse.org/ice">ICE project webpage</a>. Visualization of the simulation results is executed through a connection to the external visualization software application, <a href="https://wci.llnl.gov/simulation/computer-codes/visit">VisIt</a>. Detailed description of ICE usage to set up and run a simulation is provided in Appendix B.</p>
+<h1 id="example-applications">Example Applications</h1>
+<p>The examples provided in the following sections are currently availabe as part of the VIBE package.</p>
+<h2 id="example-1-cylindrical-cell-electrochemical-electrical-thermal">Example 1: Cylindrical Cell (Electrochemical-Electrical-Thermal)</h2>
+<p>This example (located in the VIBE repository at examples/case3/) represents the geometry of a rolled cylindrical cell. The main model properties are given in the table below. Fig. 9 shows the geometry and the finite element mesh used to resolve the geometry of the cylindrical cell and the current collectors. The top hierarchy model has 168 (56 each for the cell-sandwich and positive and negative current collectors) zones in 4 quadrants. The zones describe different current collector and cell sandwich regions. The simulation uses 56 concurrent Dualfoil simulations for different cell-sandwich zones. Typical results are shown in Fig. 10. The maximum temperature occurs at the cell core as expected.</p>
+<p><code>* table here *</code></p>
+<div class="figure">
+<img src="assets/08-cylinder-mesh.png" alt="Figure 9: Geometry and mesh of the simulated cylindrical cell." id="fig:cylinder-mesh" width="384" />
+<p class="caption">Figure 9: Geometry and mesh of the simulated cylindrical cell.</p>
+</div>
+<div class="figure">
+<img src="assets/08-cylinder-results.png" alt="Figure 10: Sample results for example 3 (electrical potential on left and temperature on right)." id="fig:cylinder-results" width="384" />
+<p class="caption">Figure 10: Sample results for example 3 (electrical potential on left and temperature on right).</p>
+</div>
+<h2 id="example-2-pouch-cell-electrochemical-electrical-thermal">Example 2: Pouch cell (Electrochemical-Electrical-Thermal)</h2>
+<p>This example (located in the VIBE repository at examples/case6/) represents the geometry of a prismatic pouch cell. The electrochemistry is modeled using the NTG model instead of the DualFoil model. The cell under consideration is a 70mm x 110mm x 10mm 4.3 Ah pouch cell manufactured by Farasis Energy, Inc with the properties given in the table below. The pouch cell in the current study contained 17 cathode and 17 anode layers and the finite element mesh was divided into 71 corresponding zones for cell sandwich, current collectors, and pouch (Fig. 11).</p>
+<p><code>* table here *</code></p>
+<div class="figure">
+<img src="assets/08-pouch-mesh.png" alt="Figure 11: Geometry and mesh of pouch cell." id="fig:pouch-mesh" width="384" />
+<p class="caption">Figure 11: Geometry and mesh of pouch cell.</p>
+</div>
+<p>The example of the simulation results is shown in Fig. 12 and represents a temperature distribution in a pouch cell following a discharge at 5C rate of applied current. At such high applied current significant increase in temperature can be observed in the cell core. The simulation results have been validated with the experiments involving IR temperature measurement on the surface of the pouch cell (Fig. 12b). Experiments agree well with the predicted temperature profiles for all C-rates.</p>
+<div class="figure">
+<img src="assets/08-pouch-results.png" alt="Figure 12: Simulation results (a) and validation with IR measurements (b). Source: S. Allu et al, J Power Sources 246, 2014, pp. 876-886." id="fig:pouch-results" width="384" />
+<p class="caption">Figure 12: Simulation results (a) and validation with IR measurements (b). Source: S. Allu et al, J Power Sources 246, 2014, pp. 876-886.</p>
+</div>
+<h2 id="example-3-4p-and-4s-battery-module">Example 3: 4P and 4S battery module</h2>
+<p>In this example, the single pouch cell described in the previous section is used as a building block for a module, containing 4 cells in parallel or in series. The example is in the repository in examples/case7/. Meshes representing parallel (4P) and series (4S) module configurations are shown in Fig. 13. No cooling fins were placed between the cells in this model. The mesh consists of approximately 150,000 FE nodes and 308 zones in the whole module thus resolving each current collector. Concurrent electrochemical model runs (DualFoil was chosen in this case) were performed in 136 charge transfer zones within the module. The goal of this study was to estimate temperature variations across the cells connected in series and in parallel.</p>
+<div class="figure">
+<img src="assets/08-cell-arrangement.png" alt="Figure 13: Module schematics with (a) series (4S) and (b) parallel (4P) cell arrangements." id="fig:cell-arrangement" width="384" />
+<p class="caption">Figure 13: Module schematics with (a) series (4S) and (b) parallel (4P) cell arrangements.</p>
+</div>
+<p>The results of the simulations when symmetric cooling to the module surfaces is applied with a convective heat transfer coefficient of 35 W m-2 K-1 are shown in Fig. 14. As can be seen both parallel and series cases result in very similar distribution of temperature across the module. In both cases, a 5C discharge rate was applied.</p>
+<div class="figure">
+<img src="assets/08-cell-discharge.png" alt="Figure 14: End of discharge temperature profiles in (a) 4P and (b) 4S modules." id="fig:cell-discharge" width="384" />
+<p class="caption">Figure 14: End of discharge temperature profiles in (a) 4P and (b) 4S modules.</p>
+</div>
+<h2 id="example-4-4p-module-under-dynamic-discharge">Example 4: 4P module under dynamic discharge</h2>
+<p>In this example, the mesh corresponding to the 4P module is used to simulate the dynamic discharge under the user supplied variable potentiostatic/galvanostatic conditions. The example can be found in examples/case10/. The model uses DualFoil and AMPERES Thermal components. An option of driving simulation under varying current (dynamic discharge) has been added in the current release. The key-value pair file (for detailed description of sections of the input and configuration files please see Appendix A) contains several lines dedicated specifically for this new option. The following keywords are used to describe the cycling profile:</p>
+<p>NUMSEG - Number of segments in the cycling profile.</p>
+<p>CURRDEN - List of current density values corresponding to each segment.</p>
+<p>MODESEG - List of segment modes. Most commonly used are 0 for potentiostatic and 1 for galvanostatic.</p>
+<p>CUTOFFL - Lower cut-off potential.</p>
+<p>CUTOFFH - Upper cut-off potential.</p>
+<p>NOTE: If the NUMSEG keyword is missing in the key-value pair input file, the simulation will assume a default constant current discharge.</p>
+<p>To utilize the dynamic discharge capability, the time stepping must be specified using the EXPLICIT option in the simulation config file with explicitly specified values of time corresponding to the segments of the cycling profile. Please see Appendix A for detailed description of input and config files required to launch a simulation.</p>
+<p>If zero current density is specified in CURRDEN, the simulation will be performed under potentiostatic condition using the OCP corresponding to the end of previous cycling segment.</p>
+<h1 id="getting-started">Getting Started</h1>
+<p>The following sections provide instructions on running VIBE in a virtual machine or as a Docker container.</p>
+<h2 id="running-vibe-in-a-virtual-machine">Running VIBE in a virtual machine</h2>
+<p>In order to enable a user to take VIBE for a ‘test drive’ we have the software packaged within a Virtual Machine (VM) which can be installed on user’s machine of choice. This section describes the instructions on how to run the simulation in VM. The virtual machine is packaged into the open virtualization format archive <code>BatterySim-release&lt;Version&gt;.ova</code> which can be downloaded from the project website. Before using the VM the Virtual Box software needs to be installed on the user machine. The software can be downloaded from <a href="https://www.virtualbox.org/">virtualbox.org</a> together with the installation instructions and user manual. Once installed, start the Virtual Box and click on File &gt; Import Appliance. This will open the dialogue box where you can select the BatterySim-release.ova as your virtual machine. After such selection, BatterySim will appear in the list of the virtual machines within the left panel of Virtual Box (Fig. 15).</p>
+<div class="figure">
+<img src="assets/09-virtualbox.png" alt="Figure 15: Virtual box with VM imported." id="fig:virtualbox" width="384" />
+<p class="caption">Figure 15: Virtual box with VM imported.</p>
+</div>
+<p>If you have several virtual machines select the BatterySim and start the VM. There is no password for the BatterySim, so simply press Return key. This will open the Fedora Linux environment as shown in Fig. 16.</p>
+<div class="figure">
+<img src="assets/09-batterysim-vm.png" alt="Figure 16: BatterySim virtual machine." id="fig:batterysim-vm" width="384" />
+<p class="caption">Figure 16: BatterySim virtual machine.</p>
+</div>
+<p>From here the user can navigate to the examples directory and run the simulations in command line as described in APPENDIX A. In Fig. 17a the terminal window navigating to case 2 is shown with corresponding simulation configuration file (thermal_<em>.conf) and the input directory which stores input files as well as mesh (exodus </em>.e file). After the simulation is complete, the case directory will be populated with log files containing information on simulation run and possible errors as well as a new work directory which contains the results of simulation and the battery state CGNS file. More on the directory structure and command line launch instructions is given in Appendix A. Alternatively user may launch ICE by double-clicking on the ICE desktop icon (Fig. 17b). Instructions on running simulations with ICE can be found in Appendix B.</p>
+<div class="figure">
+<img src="assets/09-vm-commandline.png" alt="Figure 17: Using command line (a) or ICE (b) to setup and run a simulation in VIBE." id="fig:vm-commandline" width="480" />
+<p class="caption">Figure 17: Using command line (a) or ICE (b) to setup and run a simulation in VIBE.</p>
+</div>
+<p>The home directory of the battery simulator is /home/batsim/ and it contains installation of OAS (/home/batsim/oas/) and VIBE with the simulation cases (/home/batsim/vibe/). Paths for components’ drivers and executables are included in configuration file batsim.conf which is placed in a separate directory /PathTo/examples/config/ and is used by each simulation case. Simulation can thus be launched from the case directory by specifying the OAS directory and simulation configuration and pressing the Return key:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">/home/batsim/caebat/oas/install/bin/ips.py</span> \
+--simulation=thermal_electrical_chartran_cell_twoway.conf \
+--log=temp.log --platform=../config/batsim.conf -a</code></pre></div>
+<p>The BatSim virtual machine comes with four simulation cases packaged in examples directory. These involve different battery and module geometries and physical models as discussed in APPLICATION EXAMPLES section. For instance running the simulation of case2 as described above will provide a loosely coupled electrochemical-thermal-electrical solution for unrolled cell with DUALFOIL as electrochemical component. Details of the simulation cases are given in Appendix A and Appendix B.</p>
+<h2 id="running-vibe-in-docker">Running VIBE in Docker</h2>
+<p>Using Docker container to run the software is an alternative way to using the virtual machine. The details and installation instructions depending on the OS can be found at <a href="https://www.docker.com/">docker.com</a>. The following instructions explain how to:</p>
+<ul>
+<li>launch the VIBE container</li>
+<li>connect to the container from ICE</li>
+<li>stop and remove the container</li>
+</ul>
+<p><strong>Launch the VIBE container</strong></p>
+<p>Pull the latest version of the VIBE container:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> pull rombur/vibe-ssh</code></pre></div>
+<p>Download the private key id_rsa_vibe:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">wget</span> https://raw.githubusercontent.com/Rombur/VIBE/master/remote/id_rsa_vibe</code></pre></div>
+<p>Run the container:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> run -d -p 2222:22 --name vibe_ssh rombur/vibe-ssh</code></pre></div>
+<p>This will run in detached mode a container named vibe_ssh using the image rombur/vibe-ssh. It will also map the port 2222 of your machine to the port 22 of the container. This port has been exposed in the container.</p>
+<p><strong>Connect to the container from ICE</strong></p>
+<p>Use ICE like you would do in the VM with two differences.</p>
+<p>Because the examples are in the container not in your local machine, you cannot browse them. If you want to use the input files from the examples, you will need to copy them from the container. You can connect to the container using the following command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="fu">ssh</span> -i id_rsa_vibe -p 2222 root@localhost</code></pre></div>
+<p>With this command, ssh will use the port 2222 of your machine and the private key id_rsa_vibe to connect to the container. The examples can be found in /opt/vibe/examples. If you want to copy case1 from the VIBE container into you working directory, you can do:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> cp vibe_ssh:/opt/vibe/examples/case1 .</code></pre></div>
+<p>Inside the VibeLauncher window, in the Hosts pane, you need to change the hostname from localhost to docker and the Execution Path from /home/batsim/caebat to /opt. To do so, simply click on localhost and /home/batsim/caebat. Once you launch the job, a window should pop up to specify the properties of the new connection. In the Host field, write localhost. In the User field, write root. Click on Network Connections, SSH2, then click on Add Private Key... and add the id_rsa_vibe file. Back on the New Connection window, under Advanced type 2222 in the Port field.</p>
+<p>The container will still run even after you exit ICE. You will need to stop and remove it yourself using:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> stop vibe_ssh
+$ <span class="ex">docker</span> rm vibe_ssh</code></pre></div>
+<p>To check that the container has been stopped, type:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> ps</code></pre></div>
+<p>There should not be any container named vibe_ssh. To check that the container has been removed, type:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">docker</span> ps -a</code></pre></div>
+<p>There should not be any container named vibe_ssh.</p>
+<h1 id="appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</h1>
+<p>This section describes the simulation launch procedure using command line as opposed to using integrated computation environment (ICE) which is detailed in the next section. All simulation scenarios (cases) are a part of VIBE and correspondingly are placed in PathTo/vibe/examples/ directory. When running in BatterySim virtual machine this directory will be located in /home/batsim/caebat/vibe/examples/. As an example the coupled electrochemical-electrical-thermal modeling of a prismatic cell (case 6) is considered here. The structure of the directory case6 is shown below.</p>
+<div class="figure">
+<img src="assets/10-directorycase6.png" alt="Structure of directory for Case 6." width="192" />
+<p class="caption">Structure of directory for Case 6.</p>
+</div>
+<p>The input directory contains mesh file (Exodus file) of the geometry as well as key-value pair input file to set up material constants in simulation models. This file needs to be edited if different boundary conditions and/or model parameters are desired. In the present configuration of VIBE the input_keyvalue file has the following fields:</p>
+<div class="figure">
+<img src="assets/10-keyvaluefields.png" alt="Example of input key-value file." width="384" />
+<p class="caption">Example of input key-value file.</p>
+</div>
+<p>The names of the keys in the input file are to a great extent self-explanatory. ICSHORT parameter determines whether internal short circuit is modeled in either thermal or electrical components. NUMBCS sets up the number of boundary conditions with BCIDS representing IDs of the side sets in the corresponding mesh file where the boundary conditions are to be applied. Two types of boundary conditions can be set with BCTYPE=1 representing Robin boundary conditions and BCTYPE=2 representing the Dirichlet type of BC. In the above example, the block of electrochemical model parameters represents the NTG model setup. A slightly different setup is required when the Pseudo 2D model represented by DualFoil subroutine is used. Parameter CUTOFF sets the voltage at which discharge of the cell terminates. CURRDEN is the applied current density in A/m2 in the cell (current normalized by the total area of the cell). THICKNESS determines the thickness of the cell sandwich (in meters). The YPolyDegrees and UPolyDegrees vectors set the dimensions of the polynomial fits for Y and U functions in NTG model (please see formulation of models in the Battery State section of this release document). The first element of the vector represents the order of the polynomial that describes impedance (Y) or OCP (U) as a function of depth of discharge. If the discharge curves at of the cell different temperatures are available, the corresponding fits can be made bi-polynomial in which case the degree of polynomial in temperature is described by the second element of the vector. In case when the thermal behavior data are not available, this member is simply set to zero, as in the above example. YPolyCoefficients and YPolyCoefficients are the vectors containing the coefficients of the corresponding polynomial fits. Once the input file has been modified accordingly and saved the simulation parameters can be configured. This is done within the simulation configuration file SimulationName.conf. The simulation config file captures the components used in the simulation, total number of variables passed through the Battery State, input/output from the components and corresponding component drivers. If a different model is desired this can be changed here. While the example case6 uses NTG model to describe electrochemistry, this can be changed to Pseudo 2D component (DualFoil) if needed and if all material constants required for DualFoil code to run are available. Within the configuration file [PORTS] change the [[CHARTRAN]] implementation to IMPLEMENTATION = DUALFOIL. The corresponding component specification can be added to the configuration file, for instance:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="ex">DUALFOIL</span>]
+    <span class="ex">CLASS</span> = CHARTRAN
+    <span class="ex">SUB_CLASS</span> =
+    <span class="ex">NAME</span> = DualFoil
+    <span class="ex">NPROC</span> = 1
+    <span class="ex">BIN_PATH</span> = <span class="va">$CAEBAT_ROOT</span>/bin
+    <span class="ex">INPUT_DIR</span> = <span class="va">$SIM_ROOT</span>/input
+    <span class="ex">INPUT_FILES</span> = <span class="st">&#39;dualfoil5.in&#39;</span> , <span class="st">&#39;li-ion-ebar.in&#39;</span>
+    <span class="ex">OUTPUT_FILES</span> = <span class="st">&#39;df_caebat.out&#39;</span>
+    <span class="ex">INPUT_VAR</span> = <span class="st">&#39;lumped_temperature&#39;</span>
+    <span class="ex">OUTPUT_VAR</span> = <span class="st">&#39;lumped_source&#39;</span> , <span class="st">&#39;lumped_resistance&#39;</span>
+    <span class="ex">SCRIPT</span> = <span class="va">$BIN_PATH</span>/dualfoil_chartran.py</code></pre></div>
+<p>In this case, the DualFoil Fortran code requires two input files that need to be placed in the input directory of the simulation case. More on the DualFoil code description and requirements can be found at <a href="http://www.cchem.berkeley.edu/jsngrp/fortran.html">cchem.berkeley.edu</a>. The last set of parameters in the simulation config file defines the time marching.</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="ex">TIME_LOOP</span>]
+   <span class="ex">MODE</span> = REGULAR
+   <span class="ex">START</span> = 0.0
+   <span class="ex">FINISH</span> = 30.
+   <span class="ex">NSTEP</span> = 2
+   <span class="ex">VALUES</span> = 3.4 3.5 3.6 3.7</code></pre></div>
+<p>Two ways of setting up the time step can be implemented. REGULAR mode defines beginning, end and number of time steps to take during the simulation. EXPLICIT mode allows specification of a vector containing specific values of time at which simulation should be performed. In the latter case the software uses the variable named VALUES. Time is specified in minutes. EXPLICIT method allows using non-uniform size of time steps and is useful where cell potential changes abruptly compared to otherwise smooth profiles where a large time step is sufficient to progress the simulation. This mode must be used with dynamic discharge option.</p>
+<p>Once the input files have been edited and simulation configuration has been set, the simulation (case6 in virtual machine BatterySim in this example) can be launched from the command line by running the following line from the simulation case directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="ex">/home/batsim/caebat/oas/install/bin/ips.py</span> --simulation=thermal_electrical_chartran_farasis.conf \
+--log=temp.log --platform=../config/batsim.conf -a</code></pre></div>
+<p>When simulation completes the results can be found in work directory where they are arranged by the simulation component.</p>
+<div class="figure">
+<img src="assets/10-workdirectory.png" alt="Example of a working directory." width="192" />
+<p class="caption">Example of a working directory.</p>
+</div>
+<p>The CFD General Notation System (CGNS) is used to store the variables in zones. The corresponding state file named cphit.cgns is stored in battery_state directory. The results of the simulation can be retrieved from THERMAL_Amperes_5 and ELECTRICAL_Amperes_4 directories with the integer in the directory name showing the number of the component in sequence. These directories contain the *.silo files that can be viewed and processed further with VisIt. Since the Virtual Machine comes with VisIt installed, the user can launch it from any directory by simply typing ‘visit’ in the command line and pressing Return key. This starts the visualization software where the simulation results can be loaded as a silo database (Fig. 18) or a single file.</p>
+<div class="figure">
+<img src="assets/10-outputfiles.png" alt="Figure 18: Selecting output files to visualize using VisIt in VM." id="fig:outputfiles" width="384" />
+<p class="caption">Figure 18: Selecting output files to visualize using VisIt in VM.</p>
+</div>
+<p>To view the temperature distribution in VisIt, add a Pseudocolor plot and select Battery_Temperature from the list of variables (Fig. 19a). Clicking on the Draw button will create a plot in the output window (Fig. 19b).</p>
+<div class="figure">
+<img src="assets/10-thermal-visit.png" alt="Figure 19:" id="fig:thermal-visit" width="480" />
+<p class="caption">Figure 19:</p>
+</div>
+<p>Rotation, zoom, slicing, transforms, lighting, etc. can be performed in VisIt. More on this software can be found at <a href="https://wci.llnl.gov/simulation/computer-codes/visit/">wci.llnl.gov</a>.</p>
+<p>The plot in Fig. 19 shows the distribution of temperature in unrolled strip (once cell sandwich) when 2C discharge current is applied and one end of the cell is held at room temperature. The solution is obtained with Pseudo2D model (DUALFOIL) used as an electrochemical component. As already mentioned, the model can be changed to NTG by replacing DUALFOIL with NTG in the PORTS section of the configuration tile. The BatterySim Virtual Machine comes with five different cell and module simulation setups, contained in /home/batsim/caebat/vibe/examples directory as:</p>
+<ul>
+<li>Case2: unrolled cell. Useful for testing new cell parameters (for example different materials or porosities) to get an idea about modeling on a cell-sandwich level.</li>
+<li>Case3: cylindrical Li-ion cell.</li>
+<li>Case6: pouch cell.</li>
+<li>Case7: 4P and 4S modules of four pouch cells from case 6 connected in series (4S) or in parallel (4P)</li>
+<li>Case10: 4P module of four pouch cells with dynamic discharge</li>
+</ul>
+<p>Any of the above simulations can be launched either from command line as described in this section or using ICE as described in the Appendix B.</p>
+<h1 id="appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</h1>
+<p>This section provides the tutorial on setting up and running a battery simulation using ICE. It is encouraged that the user becomes familiar with the VIBE directory structure by studying Appendix A first and launching a simulation from command line. Overall the workflow in ICE consists of:</p>
+<ul>
+<li>Creating the model by working with simulation configuration file (Caebat Model)</li>
+<li>Creating the simulation input (Caebat Key-Value Pair Generator)</li>
+<li>Setting up the job launch and running a simulation (Caebat Launcher)</li>
+<li>Viewing the results</li>
+</ul>
+<p>We created several predefined simulation cases dealing with different cell geometries: unrolled cell sandwich, rolled cylindrical cell, pouch cell and module of four pouch cells. All these cases come with the Virtual Machine VIBE release. The case of 4.3 Ah pouch cell (case6) is a default simulation setup in ICE and the tutorial below discusses the default case first.</p>
+<h2 id="creating-the-model">Creating the model</h2>
+<p>To begin, launch ICE (if it isn’t already running), and you should be presented with an empty workbench. Navigate to the ICE Perspective by choosing Window &gt; Perspective &gt; Other and scrolling to ICE in the pop-up view. In this Perspective, ICE provides three options for creating new items. The user may click on the green plus icon (+) located near the top-right corner of the Item Viewer, click on the New Item button in the main ICE toolbar, or choose File &gt; Create an Item. This will launch a dialog prompting you to select a task (or Item) to create (see Fig. 20). Find Caebat Model Builder in the Item Selector list and click Finish.</p>
+<div class="figure">
+<img src="assets/11-ice-selector.png" alt="Figure 20: CAEBAT item selector in ICE." id="fig:ice-selector" width="384" />
+<p class="caption">Figure 20: CAEBAT item selector in ICE.</p>
+</div>
+<p>A CAEBAT Model Builder will appear in the main workspace with the default values corresponding to the pouch cell model. You can now edit the parameters if for instance a different number of time steps or different total time is desired. The CAEBAT Model window has two tabs (Fig. 21):</p>
+<ul>
+<li>Time Loop Data, Global Configuration, etc</li>
+<li>Ports Master</li>
+</ul>
+<p>Time Loop Data window (Fig 21a, b) allows you to select the battery geometry, time stepping scheme, components taking part in the simulation and global configuration. The Ports Master window (Fig. 21c) shows the corresponding input directories, input/output variables that are passed through the battery state, and path to each component involved in the simulation. Input directories containing meshes are also specified here. For now leave all the parameters with their default values and click Go!.</p>
+<div class="figure">
+<img src="assets/11-ice-model.png" alt="Figure 21: Battery model setup in ICE." id="fig:ice-model" width="384" />
+<p class="caption">Figure 21: Battery model setup in ICE.</p>
+</div>
+<h2 id="generating-simulation-input-key-value-pair-file">Generating simulation input key-value pair file</h2>
+<p>The key-value pair input file contains numerical parameters necessary for simulation, such as material constants, boundary conditions and coefficients of polynomials when NTG model is used to represent electrochemical component. To pull up a default Key-Value file for edit, in Item Viewer click on the green plus icon again and select Caebat Key-Value Pair from the drop down menu (Fig. 20). The file with default values corresponding to the pouch cell simulation is displayed for edit (Fig. 22). The keys are explained in Appendix A. The default simulation represents a discharge of 4.3 Ah cell with gradient of temperature applied as boundary conditions (BCs) to the cell surfaces. These settings can be edited here if different BC or different polynomials for NTG model are desired. For now accept the default values (case6) by clicking Go!.</p>
+<div class="figure">
+<img src="assets/11-ice-keyvalue.png" alt="Figure 22: Key-value pair generator in ICE." id="fig:ice-keyvalue" width="384" />
+<p class="caption">Figure 22: Key-value pair generator in ICE.</p>
+</div>
+<p>This completes the CAEBAT input generation task. The file generated will be used in the next step by the CAEBAT Launcher to run the CAEBAT problem. However, if you’d like to review your input file before launching, you can do so by opening the File &gt; Open File... menu in ICE, and navigating to the file. Once opened, you will be able to review the input file generated.</p>
+<h2 id="launching-a-caebat-job">Launching a CAEBAT job</h2>
+<p>Once the appropriate input files have been generated, launching a simulation is a relatively simple task. To get started, click the green “+” button once more to create a new ICE Item. Select Caebat Launcher (Fig. 20) from the menu and click OK. A form will appear in the main ICE workbench area (Fig. 23). This form contains the information necessary for launching a CAEBAT problem. The first piece of necessary information is to specify an input file. From the drop down menu choose the configuration file generated for the Caebat Model (in our case Caebat_Model_1.conf). If you created your own input file in the previous step using the CAEBAT Model Builder, this file should appear in the list of available files.</p>
+<p>The next step is to specify on which machine CAEBAT will be run, either locally or remotely. A default is localhost, however, additional hosts can be added by clicking the “+” button to the right of the Hosts table. When adding hosts, set the Execution Path to the directory of the machine’s CAEBAT installation. If you are launching on a remote machine, also be sure that you have appropriate privileges for the CAEBAT install directory.</p>
+<p>Lastly, use the Process menu in the upper right-hand corner; select the Launch the Job task from the drop- down menu and click the Go! button. Depending on your host machine’s configuration, you may be prompted for login credentials.</p>
+<div class="figure">
+<img src="assets/11-ice-launcher.png" alt="Figure 23: Battery simulation launcher in ICE." id="fig:ice-launcher" width="384" />
+<p class="caption">Figure 23: Battery simulation launcher in ICE.</p>
+</div>
+<p>As the simulation progresses the console window will display different information related to each component being executed in sequence. The simulation is finished when the Done! is displayed in Caebat Launcher:</p>
+<div class="figure">
+<img src="assets/11-caebat-launcher.png" alt="Figure 24: CAEBAT launcher in ICE." id="fig:caebat-launcher" width="384" />
+<p class="caption">Figure 24: CAEBAT launcher in ICE.</p>
+</div>
+<h2 id="visualizing-output">Visualizing output</h2>
+<p>The output produced by a CAEBAT job can be visually analyzed in ICE by utilizing the VisIt plug-in. Click on Launch Visit and select the location for VisIt installation. If the simulation was run in Virtual Machine, select Launch Visit Locally and then click browse and select the path to VisIt binary (Fig. 25). Scroll down and give this connection a name (any characters) and then click Finish.</p>
+<div class="figure">
+<img src="assets/11-launch-visit.png" alt="Figure 25: Launching VisIt within ICE." id="fig:launch-visit" width="384" />
+<p class="caption">Figure 25: Launching VisIt within ICE.</p>
+</div>
+<p>Click on Open Perspective and select Visualization from the list (Fig. 26a). Switch from ICE to Visualization mode. In Visualization File Viewer selection can be made for the files to view. Select the desired silo file(s) from the /home/batsim/ICEFiles/default/jobs/iceLaunch_Date_Time/work directory. The work directory of the simulation contains the results as described in APPENDIX A. Select the silo file(s) corresponding to the thermal solution from the THERMAL_Amperes directory.</p>
+<div class="figure">
+<img src="assets/11-visualization.png" alt="Figure 26: Switching to visualization mode and selecting files in ICE." id="fig:visualization" width="384" />
+<p class="caption">Figure 26: Switching to visualization mode and selecting files in ICE.</p>
+</div>
+<p>In the Visit Plot Viewer add a new plot by clicking the green “+” and selecting Scalars &gt; Battery/Temperature to view the temperature distribution in the cell. Double click on the file name in the Visit Plot Viewer. Select pseudocolor from the drop down menu of plot options. The result shows a temperature distribution in the pouch cell under non-uniform cooling of the edges (Fig. 27). The visualization capabilities in ICE allow object rotation, translation, and zoom in/out. If several silo files were loaded with each file representing a time step, a play feature can be used to step through the solutions and see the progression in time. These capabilities provide a good tool to judge the goodness of solution. For extended visualization tools the user is advised to launch VisIt which comes as a part of VM (simply type visit in the command line and hit Return).</p>
+<div class="figure">
+<img src="assets/11-pouch.png" alt="Figure 27: Temperature distribution in pouch cell visualized in ICE." id="fig:pouch" width="384" />
+<p class="caption">Figure 27: Temperature distribution in pouch cell visualized in ICE.</p>
+</div>
+<p>Simulation involving each of the cases located in examples directory can be performed either using command line (Appendix A) or by using ICE. The BatterySim Virtual Machine comes with five different cell and module simulation setups, contained in /home/batsim/caebat/vibe/examples directory as shown in the table below. Each geometry, except unrolled cell, is discussed in details in APPLICATION EXAMPLES section. Any other meshes can be created by user to set up new simulation cases.</p>
+<h3 id="case-2">Case 2</h3>
+<p>Unrolled cell. Useful for testing new cell parameters (for example different materials or porosities) or testing new models on simple cell sandwich geometry.</p>
+<div class="figure">
+<img src="assets/11-case2.png" alt="Figure 28: Case 2 geometry." id="fig:case2" width="96" />
+<p class="caption">Figure 28: Case 2 geometry.</p>
+</div>
+<h3 id="case-3">Case 3</h3>
+<p>Cylindrical Li-ion cell.</p>
+<div class="figure">
+<img src="assets/11-case3.png" alt="Figure 29: Case 3 geometry and mesh." id="fig:case3" width="192" />
+<p class="caption">Figure 29: Case 3 geometry and mesh.</p>
+</div>
+<h3 id="case-6">Case 6</h3>
+<p>Pouch cell. Default case in ICE with the NTG model coefficients based on NMC-Graphite cell discharge profiles.</p>
+<div class="figure">
+<img src="assets/11-case6.png" alt="Figure 30: Case 6 geometry and mesh." id="fig:case6" width="192" />
+<p class="caption">Figure 30: Case 6 geometry and mesh.</p>
+</div>
+<h3 id="case-7">Case 7</h3>
+<p>4P and 4S modules of four pouch cells from case 6 connected in series (4S) or in parallel (4P).</p>
+<div class="figure">
+<img src="assets/11-case7.png" alt="Figure 31: Case 7 geometry and mesh." id="fig:case7" width="192" />
+<p class="caption">Figure 31: Case 7 geometry and mesh.</p>
+</div>
+<h3 id="case-10">Case 10</h3>
+<p>4P module with demonstration of dynamic discharge.</p>
+<div class="figure">
+<img src="assets/11-case10.png" alt="Figure 32: Case 10 geometry and mesh." id="fig:case10" width="192" />
+<p class="caption">Figure 32: Case 10 geometry and mesh.</p>
+</div>
+<p>Simulation involving any of the above meshes can be prepared and launched using ICE. In the following example we will run the module simulation by importing the configuration files in ICE. The examples are based on Virtual Machine release of VIBE; with any other installation of VIBE and ICE the pathnames would be different.</p>
+<p>Start with launching ICE by double clicking the Eclipse icon in VM. In order to import items (configuration files and key-value pair input files) in ICE click on the yellow arrow located in the top toolbar of the ICE window (Fig. 33).</p>
+<div class="figure">
+<img src="assets/11-toolbar.png" alt="Figure 33: Importing files in ICE." id="fig:toolbar" width="480" />
+<p class="caption">Figure 33: Importing files in ICE.</p>
+</div>
+<p>This will create a dialog box where the user can browse to navigate to the files that should be imported. Let’s start with the 4P module and first import the simulation configuration file into ICE. By clicking the Browse button navigate to the /home/batsim/caebat/vibe/examples/case7 directory and select the 4P.conf file. Select Caebat Model from the list and click Finish (Fig. 34a). This will create the Caebat Model form in ICE where the configuration parameters, components and time stepping are specified. Click Go! to create the corresponding ICE item. Similarly, import the key-value pair file from the case7/input directory (Fig. 27b) and click Go! to create the input file used within ICE. What is left is to create the job launcher by adding an item to the item viewer (click on the green “+” in the Item Viewer and select Caebat Launcher). Select the corresponding CaebatModel.conf file, check ‘Use custom key-value pair file?’ and select the corresponding CaebatKeyValuePair.dat file from the drop down list.</p>
+<p>NOTE: Import of the key-value pair file into ICE is necessary only when this file will be modified by user. If no modifications are intended, ICE will use the file associated with the selected simulation case and the user can leave ‘Use custom key-value pair file?’ field unchecked.</p>
+<div class="figure">
+<img src="assets/11-ice-items.png" alt="Figure 34: Importing items into ICE." id="fig:ice-items" width="480" />
+<p class="caption">Figure 34: Importing items into ICE.</p>
+</div>
+<p>Launch the simulation by clicking Go!. When finished, display the result of the thermal solution as described in Visualizing Output section above (be sure to select the latest iceLaunch directory containing the results of the most recent simulation). The resulting window with the thermal solution is displayed in Fig. 35.</p>
+<div class="figure">
+<img src="assets/11-ice-4p.png" alt="Figure 35: Temperature distribution in 4P Li-ion module." id="fig:ice-4p" width="384" />
+<p class="caption">Figure 35: Temperature distribution in 4P Li-ion module.</p>
+</div>
+<p>Similarly, the simulation involving module with cells in series can be performed. Close the Visit Editor window, delete the files in Visualization Viewer and switch from Visualization to ICE mode which will open the Item Viewer. Close the current Caebat Model, Key-Value Pair and Launcher windows and delete the corresponding items from the Item Viewer. Using the procedure described for item import above, import the new Caebat Model using the configuration file for 4S simulation (_4S.conf) located in PathTo/examples/case7/ directory. Import the key-value pair input file from PathTo/examples/case7/input/ directory. Since the four cells are now connected in series, the total current flux should be four times less than the one used in the previous 4P simulation. Enter the corresponding number in the CurrentFlux field of the Key- Value Pair form as shown below (Fig. 36) and click Go!.</p>
+<div class="figure">
+<img src="assets/11-changevalues.png" alt="Figure 36: Changing values in the input file." id="fig:changevalues" width="480" />
+<p class="caption">Figure 36: Changing values in the input file.</p>
+</div>
+<p>In the same manner as described for the 4P case, add the Caebat Launcher, select the appropriate model and key-value files and launch the simulation. When the simulation is done the solution can be checked by using the visualization viewer in ICE as previously described. This time let’s check the electrical solution by viewing the potential distribution in 4S module. Launch Visit and select the silo file located in the ICE jobs directory where the recent launches are stored:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">/home/batsim/ICEFiles/default/jobs/iceLaunch_DateAndTime/work/ELECTRICAL_Amperes/output_Electricity_silo/</span></code></pre></div>
+<p>Select the file 2.1.silo which corresponds to the final solution. In Visit Plot Viewer add an item (green “+”) and select Battery/PotentialSolutionP1 in Scalars (Fig. 37). Click OK.</p>
+<div class="figure">
+<img src="assets/11-select-plots.png" alt="Figure 37: Selecting the potential as output variable from the solution." id="fig:select-plots" width="384" />
+<p class="caption">Figure 37: Selecting the potential as output variable from the solution.</p>
+</div>
+<p>After double clicking on the output variable name (Battery/PotentialSolutionP1) in the Visit Plot Viewer, the plot showing potential distribution in 4S module will appear (Fig. 38). Holding left mouse button down and moving the mouse will rotate the plot, holding Shift key down and dragging the mouse with left button pressed will translate the plot and using mouse scroll will zoom in and out.</p>
+<div class="figure">
+<img src="assets/11-ice-4s.png" alt="Figure 38: Output of electric potential in 4S module in ICE." id="fig:ice-4s" width="480" />
+<p class="caption">Figure 38: Output of electric potential in 4S module in ICE.</p>
+</div>
+<p>At this point user should be able to run any of the cases either from the corresponding case directory using command line or by using ICE to import the input files from the corresponding case directory and launching the simulation. Different discharge currents or time stepping can be applied. Pre-defined boundary conditions for thermal solution can also be changed. The default for the module case is uneven cooling of module sides with heat transfer coefficients of 15 W/m2K and 55 W/m2K which imitates failure of cooling system when air moves fast on one side and slow convective cooling is applied to the other side. These boundary conditions can be changed to investigate other cooling scenarios. Next the user can utilize the provided geometries and meshes to test other materials or models. If the discharge curves for other materials are available, the NTG coefficients can be determined and the user can input them into the key-value pair file as U and Y polynomials. The order of those polynomials can be changed as well (default is 6). Case2 and case3 are supplied with DUALFOIL as well as NTG pre-defined. The user can select either of the models by typing the corresponding name for CHARTRAN component in the Cebat Model form in ICE (as shown below). DUALFOIL model is based on porous electrode theory and requires significant amount of material parameters to be determined; if these are known for particular cell chemistry, user can set up DUALFOIL as an electrochemical component instead of NTG for case6 and case7 as well. Finally, the user can of course supply his mesh to set up a new simulation case in VIBE.</p>
+<div class="figure">
+<img src="assets/11-portstable.png" alt="Figure 39: Port name and implementation in ICE." id="fig:ports" width="480" />
+<p class="caption">Figure 39: Port name and implementation in ICE.</p>
+</div>
+<h1 id="appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</h1>
+<p>The following must be installed prior to installation of OAS and VIBE.</p>
+<ul>
+<li>CMake (version 2.8.6-rc3 recommended), available from <a href="http://www.cmake.org">cmake.org</a></li>
+<li>C, C++, and Fortran compilers (gcc4.7 or higher, g++, gfortran 4.3 and higher recommended)</li>
+<li>MPI available from <a href="http://www.mpich.org">mpich.org</a> or <a href="http://www.open-mpi.org">open-mpi.org</a> (open MPI 1.8.3 or higher)</li>
+<li>HDF5 (version 1.8.7 recommended), available from <a href="http://www.hdfgroup.org/HDF5/">hdfgroup.org</a></li>
+<li>SILO (version 4.7.2 recommended), available from <a href="https://wci.llnl.gov/codes/silo/">wci.llnl.gov</a></li>
+<li>CGNS is available at <a href="http://cgns.sourceforge.net/">cgns.sourceforge.net</a> When building cgns use ccmake to edit the flags before generating the Makefile. The flags can be edited to match the following:</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">BUILD_CGNSTOOLS</span>         ON
+<span class="ex">CGNS_BUILD_SHARED</span>       ON
+<span class="ex">CGNS_USE_SHARED</span>         ON
+<span class="ex">CMAKE_BUILD_TYPE</span>        Release
+<span class="ex">CMAKE_INSTALL_PREFIX</span>    /PATH/TO/cgnsinstall_dir ENABLE_64BIT OFF
+<span class="ex">ENABLE_FORTRAN</span>          ON
+<span class="ex">ENABLE_HDF5</span>             ON
+<span class="ex">ENABLE_LEGACY</span>           OFF
+<span class="ex">ENABLE_SCOPING</span>          OFF
+<span class="ex">ENABLE_TESTS</span>            OFF
+<span class="ex">FORTRAN_NAMING</span>          LOWERCASE_
+<span class="ex">HDF5_INCLUDE_PATH</span>       /PATH/TO/hdf5-1.8.9/include
+<span class="ex">HDF5_LIBRARY</span>            /PATH/TO/hdf5-1.8.9/lib64/libhdf5.so
+<span class="ex">HDF5_NEED_MPI</span>           OFF
+<span class="ex">HDF5_NEED_SZIP</span>          OFF
+<span class="ex">HDF5_NEED_ZLIB</span>          OFF</code></pre></div>
+<p>Type ‘c’ to configure and ‘g’ to generate the Makefile.</p>
+<p>NOTE. Make sure the bashrc file contains the corresponding paths to hdf5 and cgns libraries:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">Export</span> LD_LIBRARY_PATH=<span class="va">$CGNS_ROOT</span>/lib:<span class="va">$HDF5_ROOT</span>/lib:<span class="va">$MPI_ROOT</span>/lib:<span class="va">$LD_LIBRARY_PATH</span></code></pre></div>
+<h2 id="ice">ICE</h2>
+<p>ICE is a free and open source project available for download from the Eclipse download servers. To download, navigate to <a href="https://eclipse.org/ice">eclipse.org/ice</a> and click the ‘Downloads’ button found in the site’s top toolbar. ICE can be downloaded as a binary for Linux, Windows or Mac or as source code from the ICE GitHub repository <a href="https://github.com/eclipse/ice">github.com/eclipse/ice</a>. ICE also provides a wiki and other applications that document the current capabilities of ICE as well as the bug tracker for the project. Detailed instructions on using CAEBAT with ICE can be found at <a href="http://wiki.eclipse.org/Using_VIBE_with_ICE">wiki.eclipse.org</a> and in an instruction video at <a href="https://www.youtube.com/watch?v=ieMlDUZZfpg">youtube.com</a>. ICE is released under the Eclipse Public License (EPL).</p>
+<h2 id="oasvibe">OAS/VIBE</h2>
+<p>Please contact the team to obtain access to repository.</p>
+<h1 id="appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</h1>
+<p>One of the major advantages of CAEBAT project is that the final product is an open source software. In other words the user can become a developer and implement his own simulation scenarios as well as integrate components into VIBE. In this example we discuss implementation of tight coupling (Picard iteration) between electrochemical (DualFoil) and Thermal components in VIBE.</p>
+<p>In general, Picard iteration to a specified convergence criteria provides tight coupling of two physics components f0 and f1 exchanging variables via functions g. At each time step, a fixed-point iteration can be schematically represented as follows.</p>
+<div class="figure">
+<img src="assets/13-converged.png" alt="Figure 40: Example of convergence." id="fig:converged" width="480" />
+<p class="caption">Figure 40: Example of convergence.</p>
+</div>
+<p>In terms of implementation in VIBE, such task is relatively simple and requires creating the new simulation driver which would call the corresponding components in the right sequence until the desired convergence is reached. Drivers can be found in VIBE/trunk/components (see figure below).</p>
+<div class="figure">
+<img src="assets/13-components.png" alt="Figure 41: Components directory for VIBE." id="fig:components" width="96" />
+<p class="caption">Figure 41: Components directory for VIBE.</p>
+</div>
+<p>Simulation drivers follow Python logic with the Driver class where the actual call of components is performed. The sequence and number of components are characteristic of the simulation setup. For instance the unit iteration sequence in this example can be represented as</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="kw">class</span> Driver(Component):
+
+    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, services, config):
+        <span class="co">&quot;code here&quot;</span>
+
+    <span class="kw">def</span> step(<span class="va">self</span>, timestamp<span class="op">=</span><span class="dv">0</span>):
+        <span class="co">&quot;code here&quot;</span>
+
+    <span class="co"># Iterate throught the timeloop</span>
+    <span class="cf">for</span> t <span class="kw">in</span> tlist[<span class="dv">1</span>:<span class="bu">len</span>(timeloop)]:
+        <span class="co">&quot;code here&quot;</span>
+        <span class="cf">while</span> <span class="bu">abs</span>(T_new_sum <span class="op">-</span> T_old_sum) <span class="op">&gt;</span> tol :
+            services.call(chartran_comp, <span class="st">&#39;init&#39;</span>, t)
+            services.call(chartran_comp, <span class="st">&#39;step&#39;</span>, t)
+            services.call(chartran_comp, <span class="st">&#39;finalize&#39;</span>, t)
+
+            services.call(electrical_comp, <span class="st">&#39;init&#39;</span>, t)
+            services.call(electrical_comp, <span class="st">&#39;step&#39;</span>, t)
+            services.call(electrical_comp, <span class="st">&#39;finalize&#39;</span>, t)
+
+            services.call(thermal_comp, <span class="st">&#39;init&#39;</span>, t)
+            services.call(thermal_comp, <span class="st">&#39;step&#39;</span>, t)
+            services.call(thermal_comp, <span class="st">&#39;finalize&#39;</span>, t)</code></pre></div>
+<p>Where the Electrochemical (‘chartran’), Electrical and thermal components are called in the above sequence at each time step. In this particular case the convergence is checked in terms of temperatures from the current and previous Picard iteration. The thermal component is coupled to DualFoil via temperature-dependent diffusivities and Buttler-Volmer kinetics in DualFoil component. To check the influence of tight coupling, simulations were run on an unrolled cell with properties of the polymer cell described in Doyle, Fuller 1993. The results are shown in Fig. 42. Weak dependence of sources on temperature results in very fast convergence of Picard iterations (typically within 4 iterations).</p>
+<div class="figure">
+<img src="assets/13-heat-source.png" alt="Figure 42: Influence of the coupling scheme on the heat source in Li-polymer cell." id="fig:heat-source" width="480" />
+<p class="caption">Figure 42: Influence of the coupling scheme on the heat source in Li-polymer cell.</p>
+</div>
+<h1 id="references">References</h1>
+<p>Doyle, M., T. F. Fuller, et al. (1993). “Modeling of Galvanostatic Charge and Discharge of the Lithium/Polymer/Insertion Cell.” Journal of the Electrochemical Society 140(6): 1526-1533.</p>
+<p>Eldred, M. S. DAKOTA, a multilevel parallel object-oriented framework for design optimization, parameter estimation, uncertainty quantification, and sensitivity analysis: Version 4.1 reference manual.</p>
+<p>Elwasif, W. R., D. E. Bernholdt, et al. (2012). Parameter Sweep and Optimization of Loosely Coupled Simulations Using the DAKOTA Toolkit. International Conferences on Computational Science and Engineering, Paphos, Cyprus, IEEE.</p>
+<p>Fuller, T. F., M. Doyle, et al. (1994). “Relaxation Phenomena in Lithium-Ion-Insertion Cells.” Journal of the Electrochemical Society 141(4): 982-990.</p>
+<p>Fuller, T. F., M. Doyle, et al. (1994). “Simulation and Optimization of the Dual Lithium Ion Insertion Cell.” Journal of the Electrochemical Society 141(1): 1-10.</p>
+<p>Kim, G.-H., K. Smith, et al. (2011). “Multi-Domain Modeling of Lithium-Ion Batteries Encompassing Multi-Physics in Varied Length Scales.” Journal of the Electrochemical Society 158(8): A955-A969.</p>
+<p>Seong Kim, U., J. Yi, et al. (2011). “Modeling the Dependence of the Discharge Behavior of a Lithium-Ion Battery on the Environmental Temperature.” Journal of the Electrochemical Society 158(5): A611-A618.</p>
+<p>Srinivasan, V. and C. Y. Wang (2003). “Analysis of Electrochemical and Thermal Behavior of Li-Ion Cells.” Journal of the Electrochemical Society 150(1): A98-A106.</p>
+<p>Website, B. “BatPac.” from <a href="http://www.cse.anl.gov/batpac/index.html">cse.anl.gov/batpac</a>.</p>
+<p>Allu, S., Kalnaus, S., Elwasif, W., Simunovic, S., Turner, J.A., Pannala, S., A new open computational framework for highly resolved coupled three-dimensional multiphysics simulations of Li-ion cells, J Power Sources 246 (2014), 876-886.</p>
+<h1 id="team">Team</h1>
+<p>The CAEBAT ORNL team consists of multidisciplinary researchers working on various aspects of computational science related to batteries and we are working closely with the experimental groups at ORNL for validation. The team structure is given below. More information can be found at the project website <a href="http://batterysim.org">batterysim.org</a>.</p>
+<div class="figure">
+<img src="assets/15-team.png" alt="Figure 43: CAEBAT team members at ORNL." id="fig:team" width="480" />
+<p class="caption">Figure 43: CAEBAT team members at ORNL.</p>
+</div>
+<h1 id="acknowledgment">Acknowledgment</h1>
+<p>Research was sponsored by the U.S. Department of Energy, Assistant Secretary for Energy Efficiency and Renewable Energy, Vehicle Technologies Program, Hybrid Electric Systems activity, under contract DE-AC05- 00OR22725 with UT-Battelle, LLC. The support of the CAEBAT (Computer Aided Engineering for Batteries) program with Brian Cunningham and David Howell as the managers is acknowledged. The support of the ORNL Sustainable Transportation program office (Ron Graves and Claus Daniels) is also acknowledged along with contributions from Damien Lebrun-Grandie, Abhishek Kumar, Jagjit Nanda, Hsin Wang, and Nancy Dudney.</p>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+

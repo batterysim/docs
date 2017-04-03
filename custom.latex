@@ -1,0 +1,67 @@
+% Document class with font size, title page
+% ------------------------------------------------------------------------------
+
+\documentclass[12pt,titlepage]{article}
+
+% Packages
+% ------------------------------------------------------------------------------
+
+\usepackage{amsmath}                    % mathematical features
+\usepackage{booktabs}                   % publication quality tables
+\usepackage[margin=1.25in]{geometry}    % document dimensions
+\usepackage{graphicx}                   % enhanced graphics support
+\usepackage{parskip}                    % paragraph indentation
+\usepackage[colorlinks=true,linkcolor=black]{hyperref}  % hypertext links
+
+% allow pages to flow over page boundaries
+\usepackage{longtable}
+\setlength{\LTcapwidth}{\linewidth}
+
+% overwrite \begin{figure}[htbp] with \begin{figure}[H]
+\usepackage{float}
+\floatplacement{figure}{H}
+
+% Pandoc commands
+% ------------------------------------------------------------------------------
+
+$if(highlighting-macros)$
+  $highlighting-macros$
+$endif$
+
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+% Document
+% ------------------------------------------------------------------------------
+
+\begin{document}
+
+\begin{titlepage}
+  \centering
+  \vspace*{\baselineskip}
+
+  {\Huge CAEBAT OAS/VIBE}\\[\baselineskip]
+  \includegraphics[width=0.7\linewidth]{assets/00-logo.png}
+
+  \vspace*{\baselineskip}
+  S. Allu, J.J. Billings, W. Elwasif, S. Kalnaus, A. Kumar, D. Lebrun-Grandie,
+  A. McCaskey, S. Pannala, S. Simunovic, R.W. Smith, B. Turcksin, J. Turner
+  
+  \vspace*{4\baselineskip}
+  12/1/2016 \\
+  Production Release v1.2
+
+  \vspace*{\baselineskip}
+  Document detailing the updated release to users of CAEBAT OAS and VIBE.
+  Contains software description, installation, run instructions, and examples.
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+$body$
+
+\end{document}
+

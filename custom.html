@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CAEBAT OAS/VIBE</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="navbar-fixed-side.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Pandoc commands -->
+
+  $if(quotes)$
+    <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+  $endif$
+
+  $if(highlighting-css)$
+    <style type="text/css">$highlighting-css$</style>
+  $endif$
+
+  $if(math)$
+    $math$
+  $endif$
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-lg-2">
+        <nav class="navbar navbar-inverse navbar-fixed-side">
+          
+          <!-- Side Navigation Bar -->
+
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">CAEBAT OAS/VIBE</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavBar">
+              <ul class="nav navbar-nav">
+                <li><a href="#new-features">New Features</a></li>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#oas">OAS</a></li>
+                <li><a href="#battery-markup-language-batml">Battery Markup Language (BatML)</a></li>
+                <li><a href="#battery-state">Battery State</a></li>
+                <li><a href="#virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</a></li>
+                <li><a href="#integrated-computational-environment-ice">Integrated Computational Environment (ICE)</a></li>
+                <li><a href="#example-applications">Example Applications</a></li>
+                <li><a href="#getting-started">Getting Started</a></li>
+                <li><a href="#appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</a></li>
+                <li><a href="#appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</a></li>
+                <li><a href="#appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</a></li>
+                <li><a href="#appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</a></li>
+                <li><a href="#references">References</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#acknowledgment">Acknowledgment</a></li>
+              </ul>
+            </div>
+          </div>
+
+        </nav>
+      </div>
+      <div class="col-sm-9 col-lg-10">
+
+<!-- Main Content -->
+
+<h1 class="text-center">CAEBAT OAS/VIBE</h1>
+<img class="center-block" src="assets/00-logo.png" alt="logo" width="400px">
+<p class="text-center">S. Allu, J.J. Billings, W. Elwasif, S. Kalnaus, A. Kumar, D. Lebrun-Grandie, A. McCaskey, S. Pannala, S. Simunovic, R.W. Smith, B. Turcksin, J. Turner</p>
+<p class="text-center">12/1/2016, Production Release v1.2</p>
+<p class="text-center">Document detailing the updated release to users of CAEBAT OAS and VIBE. Contains software description, installation, run instructions, and examples.</p>
+<br>
+
+$body$
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
+

@@ -1,0 +1,59 @@
+/* Bootstrap
+--------------------------------------------------------------------- */
+
+.col-sm-9, .col-lg-10 {
+  max-width: 800px;
+}
+
+.navbar-nav li {
+  font-family: sans-serif;
+  font-size: 1.1em;
+}
+
+/* Pandoc
+--------------------------------------------------------------------- */
+
+.header {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.4em;
+}
+
+.figure {
+  text-align: center;
+}
+
+/* My Styles
+--------------------------------------------------------------------- */
+
+caption {
+  color: black;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+code {
+  font-size: 0.7em;
+}
+
+dl, li, p {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.4em;
+}
+
+h1 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h2 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+h3 {
+  font-family: "Times New Roman", Times, serif;
+}
+
+pre {
+  font-size: 1.0em;
+}
+
