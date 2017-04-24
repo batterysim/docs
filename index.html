@@ -55,7 +55,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
   <div class="container-fluid">
     <div class="row">
@@ -74,24 +74,55 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
               <a class="navbar-brand" href="#">CAEBAT OAS/VIBE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavBar">
-              <ul class="nav navbar-nav">
-                <li><a href="#new-features">New Features</a></li>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#oas">OAS</a></li>
-                <li><a href="#battery-markup-language-batml">Battery Markup Language (BatML)</a></li>
-                <li><a href="#battery-state">Battery State</a></li>
-                <li><a href="#virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</a></li>
-                <li><a href="#integrated-computational-environment-ice">Integrated Computational Environment (ICE)</a></li>
-                <li><a href="#example-applications">Example Applications</a></li>
-                <li><a href="#getting-started">Getting Started</a></li>
-                <li><a href="#appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</a></li>
-                <li><a href="#appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</a></li>
-                <li><a href="#appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</a></li>
-                <li><a href="#appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</a></li>
-                <li><a href="#references">References</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#acknowledgment">Acknowledgment</a></li>
+
+              <!--Navigation Items-->
+
+              <ul>
+              <li><a href="#new-features">New Features</a></li>
+              <li><a href="#introduction">Introduction</a></li>
+              <li><a href="#oas">OAS</a></li>
+              <li><a href="#battery-markup-language-batml">Battery Markup Language (BatML)</a></li>
+              <li><a href="#battery-state">Battery State</a></li>
+              <li><a href="#virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</a></li>
+              <li><a href="#integrated-computational-environment-ice">Integrated Computational Environment (ICE)</a></li>
+              <li><a href="#example-applications">Example Applications</a><ul>
+              <li><a href="#example-1-cylindrical-cell-electrochemical-electrical-thermal">Example 1: Cylindrical Cell (Electrochemical-Electrical-Thermal)</a></li>
+              <li><a href="#example-2-pouch-cell-electrochemical-electrical-thermal">Example 2: Pouch cell (Electrochemical-Electrical-Thermal)</a></li>
+              <li><a href="#example-3-4p-and-4s-battery-module">Example 3: 4P and 4S battery module</a></li>
+              <li><a href="#example-4-4p-module-under-dynamic-discharge">Example 4: 4P module under dynamic discharge</a></li>
+              </ul></li>
+              <li><a href="#getting-started">Getting Started</a><ul>
+              <li><a href="#running-vibe-in-a-virtual-machine">Running VIBE in a virtual machine</a></li>
+              <li><a href="#running-vibe-in-docker">Running VIBE in Docker</a></li>
+              </ul></li>
+              <li><a href="#appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</a></li>
+              <li><a href="#appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</a><ul>
+              <li><a href="#creating-the-model">Creating the model</a></li>
+              <li><a href="#generating-simulation-input-key-value-pair-file">Generating simulation input key-value pair file</a></li>
+              <li><a href="#launching-a-caebat-job">Launching a CAEBAT job</a></li>
+              <li><a href="#visualizing-output">Visualizing output</a><ul>
+              <li><a href="#case-2">Case 2</a></li>
+              <li><a href="#case-3">Case 3</a></li>
+              <li><a href="#case-6">Case 6</a></li>
+              <li><a href="#case-7">Case 7</a></li>
+              <li><a href="#case-10">Case 10</a></li>
+              </ul></li>
+              </ul></li>
+              <li><a href="#appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</a><ul>
+              <li><a href="#ice">ICE</a></li>
+              <li><a href="#oasvibe">OAS/VIBE</a></li>
+              </ul></li>
+              <li><a href="#appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</a></li>
+              <li><a href="#references">References</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#acknowledgment">Acknowledgment</a></li>
               </ul>
+
+              <br>
+              <a class="btn btn-primary" href="docs.pdf" role="button"><span class="glyphicon glyphicon-file"></span> Download PDF</a>
+              <p> </p>
+              <p> </p>
+
             </div>
           </div>
 
@@ -107,6 +138,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p class="text-center">12/1/2016, Production Release v1.2</p>
 <p class="text-center">Document detailing the updated release to users of CAEBAT OAS and VIBE. Contains software description, installation, run instructions, and examples.</p>
 <br>
+<hr>
 
 <h1 id="new-features">New Features</h1>
 <p>The new release extends the previous version by implementing:</p>
@@ -611,9 +643,29 @@ $ <span class="ex">docker</span> rm vibe_ssh</code></pre></div>
 <h1 id="acknowledgment">Acknowledgment</h1>
 <p>Research was sponsored by the U.S. Department of Energy, Assistant Secretary for Energy Efficiency and Renewable Energy, Vehicle Technologies Program, Hybrid Electric Systems activity, under contract DE-AC05- 00OR22725 with UT-Battelle, LLC. The support of the CAEBAT (Computer Aided Engineering for Batteries) program with Brian Cunningham and David Howell as the managers is acknowledged. The support of the ORNL Sustainable Transportation program office (Ron Graves and Claus Daniels) is also acknowledged along with contributions from Damien Lebrun-Grandie, Abhishek Kumar, Jagjit Nanda, Hsin Wang, and Nancy Dudney.</p>
 
+<br>
+
       </div>
     </div>
   </div>
+
+  <script>
+    // adapt table of contents from pandoc for the bootstrap navigation bar
+    var firstUL = document.querySelector("ul");
+    firstUL.setAttribute("class", "nav navbar-nav");
+    var subULs = firstUL.getElementsByTagName("ul");
+    if (subULs.length > 0) {
+      for (i = 0; i < subULs.length; i++) {
+        subULs[i].setAttribute("class", "hidden")
+      }
+    }
+    
+    // add bootstrap .table class to all table elements
+    var tables = document.querySelectorAll("table");
+    for (i = 0; i < tables.length; i++) {
+      tables[i].setAttribute("class", "table");
+    }
+  </script>
 
 </body>
 

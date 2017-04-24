@@ -28,7 +28,7 @@
   $endif$
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
 
   <div class="container-fluid">
     <div class="row">
@@ -47,24 +47,15 @@
               <a class="navbar-brand" href="#">CAEBAT OAS/VIBE</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavBar">
-              <ul class="nav navbar-nav">
-                <li><a href="#new-features">New Features</a></li>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#oas">OAS</a></li>
-                <li><a href="#battery-markup-language-batml">Battery Markup Language (BatML)</a></li>
-                <li><a href="#battery-state">Battery State</a></li>
-                <li><a href="#virtual-integrated-battery-environment-vibe">Virtual Integrated Battery Environment (VIBE)</a></li>
-                <li><a href="#integrated-computational-environment-ice">Integrated Computational Environment (ICE)</a></li>
-                <li><a href="#example-applications">Example Applications</a></li>
-                <li><a href="#getting-started">Getting Started</a></li>
-                <li><a href="#appendix-a-command-line-oasvibe-launch-instructions">Appendix A: Command line OAS/VIBE launch instructions</a></li>
-                <li><a href="#appendix-b-launch-instructions-with-ice">Appendix B: Launch instructions with ICE</a></li>
-                <li><a href="#appendix-c-instructions-for-advanced-installation">Appendix C: Instructions for advanced installation</a></li>
-                <li><a href="#appendix-d-implementation-of-tight-coupling">Appendix D: Implementation of tight coupling</a></li>
-                <li><a href="#references">References</a></li>
-                <li><a href="#team">Team</a></li>
-                <li><a href="#acknowledgment">Acknowledgment</a></li>
-              </ul>
+
+              <!--Navigation Items-->
+
+              $toc$
+
+              <br>
+              <a class="btn btn-primary" href="docs.pdf" role="button"><span class="glyphicon glyphicon-file"></span> Download PDF</a>
+              <p> </p>
+
             </div>
           </div>
 
@@ -80,12 +71,33 @@
 <p class="text-center">12/1/2016, Production Release v1.2</p>
 <p class="text-center">Document detailing the updated release to users of CAEBAT OAS and VIBE. Contains software description, installation, run instructions, and examples.</p>
 <br>
+<hr>
 
 $body$
+
+<br>
 
       </div>
     </div>
   </div>
+
+  <script>
+    // adapt table of contents from pandoc for the bootstrap navigation bar
+    var firstUL = document.querySelector("ul");
+    firstUL.setAttribute("class", "nav navbar-nav");
+    var subULs = firstUL.getElementsByTagName("ul");
+    if (subULs.length > 0) {
+      for (i = 0; i < subULs.length; i++) {
+        subULs[i].setAttribute("class", "hidden")
+      }
+    }
+    
+    // add bootstrap .table class to all table elements
+    var tables = document.querySelectorAll("table");
+    for (i = 0; i < tables.length; i++) {
+      tables[i].setAttribute("class", "table");
+    }
+  </script>
 
 </body>
 
